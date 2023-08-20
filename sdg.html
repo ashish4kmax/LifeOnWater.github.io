@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Devlopment Goals</title>
+    <link rel="icon" href="./images/favicon.png">
+    <link rel="stylesheet" href="./sdg.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <!--Google font used-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex lg:flex-1">
+            <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only"></span>
+                <img class="h-8 w-auto" src="./images/sdg_logo-removebg-preview.png" alt="">
+            </a>
+            <h1 id="SDG" class="text-2xl">SUSTAINABLE DEVLOPMENT GOAL</h1>
+    
+        </div>
+        <div class="flex lg:hidden">
+            <button type="button" id="openDrawer"
+                class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                <span class="sr-only">Open main menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+        <div class="hidden lg:flex lg:gap-x-12">
+            <a href="./index.html" class="text-sm font-semibold leading-6 text-gray-900">HOME</a>
+            <a href="./sdg.html" class="text-sm font-semibold leading-6 text-gray-900 hover:text-green-500">SDG GOALS</a>
+            <a href="#Footer" class="text-sm font-semibold leading-6 text-gray-900">CONTACT</a>
+            <a href="./back/backend.html" class="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-400">TAKE PART
+                IN THE SDG</a>
+        </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div class="lg:hidden" role="dialog" aria-modal="true">
+        <!-- Background backdrop, show/hide based on slide-over state. -->
+        <!-- <div class="fixed inset-0 z-50"></div> -->
+        <div id="drawer"
+            class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="-m-1.5 p-1.5">
+                    <span class="sr-only">Your Company</span>
+                    <img class="h-8 w-auto" src="./images/sdg_logo-removebg-preview.png" alt="">
+                </a>
+                <button id="closeDrawer" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                    <span class="sr-only">Close menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-6 flow-root">
+                <div class="-my-6 divide-y divide-gray-500/10">
+                    <div class="space-y-2 py-6">
+                        <a href="./index.html"
+                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">HOME</a>
+                        <a href="./sdg.html"
+                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">SDG
+                            GOALS</a>
+                        <a href="#Footer"
+                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">CONTACT</a>
+                        <a href="./back/backend.html"
+                            class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">TAKE
+                            PART IN THE SDG</a>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    
+    <div class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+        <div class="absolute inset-0 -z-10 overflow-hidden">
+            <svg class="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-gray-200 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
+                aria-hidden="true">
+                <defs>
+                    <pattern id="e813992c-7d03-4cc4-a2bd-151760b470a0" width="200" height="200" x="50%" y="-1"
+                        patternUnits="userSpaceOnUse">
+                        <path d="M100 200V.5M.5 .5H200" fill="none" />
+                    </pattern>
+                </defs>
+                <svg x="50%" y="-1" class="overflow-visible fill-gray-50">
+                    <path
+                        d="M-100.5 0h201v201h-201Z M699.5 0h201v201h-201Z M499.5 400h201v201h-201Z M-300.5 600h201v201h-201Z"
+                        stroke-width="0" />
+                </svg>
+                <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" />
+            </svg>
+        </div>
+        <div
+            class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
+            <div
+                class="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                <div class="lg:pr-4">
+                    <div class="lg:max-w-lg">
+                        <p class="font-semibold leading-7 text-indigo-600 text-4xl">Goals</p>
+                        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sustainable Development Goal 14: Life Below Water</h1>
+                        <p class="mt-6 text-xl leading-8 text-gray-700">Healthy oceans and seas are essential to our existence.They cover 70 percent of our planet and we rely on them for food,
+                        energy and water. Yet, we have managed to do tremendous damage to these precious resources. We must protect them by
+                        eliminating pollution and overfishing and immediately start to responsibly manage and protect all marine life around the
+                        world.</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                <img class="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[30rem]"
+                    src="./images/life on water.png" alt="">
+                <br/>
+                <br/>
+                <img class="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[40rem]"
+                        src="./images/sdgs.png" alt="">
+            </div>
+            <div
+                class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                <div class="lg:pr-4">
+                    <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+                        <p>The Following are the goals related to sdg-14 Life Under Water</p>
+                        <ul role="list" class="mt-8 space-y-8 text-gray-600">
+                            <li class="flex gap-x-3">
+                                <img src="./images/fish-icon.png" alt="" width="80px" height="20px">
+                                <span><strong class="font-semibold text-gray-900">Secure Marine Life.</strong> The main goal for life under water is to secure marine life in the upcoming years.</span>
+                            </li>
+                            <li class="flex gap-x-3">
+                                <img src="./images/over.png" alt="" width="100px" height="70px">
+                                <span><strong class="font-semibold text-gray-900">Overfishing.</strong> To avoid overfishing there should be a rule made by the goverment.</span>
+                            </li>
+                            <li class="flex gap-x-3">
+                                <img src="./images/oa.png" alt="" width="100px" height="70px">
+                                <span><strong class="font-semibold text-gray-900">Ocean Acidification.</strong> To avoid the acidification of ocean we should minimize the chemical waste coming out from the industries.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./index.js"></script>
+</body>
+</html>

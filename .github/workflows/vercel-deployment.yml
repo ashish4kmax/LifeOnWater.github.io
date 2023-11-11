@@ -1,0 +1,19 @@
+name: Vercel Deployment
+
+on:
+  push:
+    branches: ["main"]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Vercel Deploy
+        run: vercel --prod --token ${{ secrets.VERCEL_TOKEN }} # Make sure VERCEL_TOKEN is set in your repository secrets

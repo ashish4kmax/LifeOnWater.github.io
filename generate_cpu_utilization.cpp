@@ -1,18 +1,20 @@
-// generate_cpu_utilization.cpp
 #include <iostream>
-#include <chrono>
-#include <thread>
+#include <sys/sysinfo.h>
 
 int main() {
-    while (true) {
-        // Simulate CPU work
-        for (int i = 0; i < 100000000; ++i) {
-            // Do some computation
-        }
+  // Get the current CPU utilization
+  struct sysinfo si;
+  sysinfo(&si);
 
-        // Sleep for a short duration to avoid 100% CPU usage
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
+  // Calculate CPU utilization percentage
+  double cpu_usage = si.cpu_total - si.cpu_idle;
+  double cpu_percent = cpu_usage / si.cpus * 100;
 
-    return 0;
+  // Convert CPU percentage to integer
+  int cpu_utilization = (int)cpu_percent;
+
+  // Print CPU utilization
+  std::cout << "CPU utilization: " << cpu_utilization << "%" << std::endl;
+
+  return 0;
 }

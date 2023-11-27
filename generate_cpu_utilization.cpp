@@ -1,35 +1,30 @@
+// cpu_utilization.cpp
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <vector>
-#include <iterator>  // Add this line to include the <iterator> header
 #include <unistd.h>
 
-int get_cpu_utilization() {
-    std::ifstream stat_file("/proc/stat");
+double get_cpu_utilization() {
+    std::ifstream file("/proc/stat");
     std::string line;
-    std::getline(stat_file, line); // Read the first line containing total CPU stats
+    std::getline(file, line);
     std::istringstream iss(line);
-    std::vector<std::string> tokens(std::istream_iterator<std::string>{iss},
-                                    std::istream_iterator<std::string>());
+    std::string cpu;
+    int user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice;
+    iss >> cpu >> user >> nice >> system >> idle >> iowait >> irq >> softirq >> steal >> guest >> guest_nice;
 
-    // Calculate total time spent in user, nice, system, idle, iowait, irq, and softirq modes
-    long total_time = std::stol(tokens[1]) + std::stol(tokens[2]) + std::stol(tokens[3]) +
-                      std::stol(tokens[4]) + std::stol(tokens[5]) + std::stol(tokens[6]) +
-                      std::stol(tokens[7]);
+    int idle_time = idle + iowait;
+    int non_idle_time = user + nice + system + irq + softirq + steal;
 
-    // Calculate idle time
-    long idle_time = std::stol(tokens[4]);
+    int total_time = idle_time + non_idle_time;
+    double cpu_utilization = (non_idle_time * 100.0) / total_time;
 
-    // Calculate CPU utilization percentage
-    double utilization = 100.0 * (1.0 - (static_cast<double>(idle_time) / total_time));
-
-    return utilization;
+    return cpu_utilization;
 }
 
 int main() {
-    double cpu_utilization = get_cpu_utilization();
-    std::cout << "CPU Utilization: " << cpu_utilization << "%" << std::endl;
+    double utilization = get_cpu_utilization();
+    std::cout << "CPU Utilization: " << utilization << "%" << std::endl;
     return 0;
 }

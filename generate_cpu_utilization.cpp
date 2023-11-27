@@ -1,30 +1,33 @@
-// cpu_utilization.cpp
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <unistd.h>
+#include <windows.h>
 
-int get_cpu_utilization() {
-    std::ifstream file("/proc/stat");
-    std::string line;
-    std::getline(file, line);
-    std::istringstream iss(line);
-    std::string cpu;
-    int user, nice, system, idle, iowait, irq, softirq, steal, guest, guest_nice;
-    iss >> cpu >> user >> nice >> system >> idle >> iowait >> irq >> softirq >> steal >> guest >> guest_nice;
+double GetCpuUtilization() {
+    FILETIME idleTime, kernelTime, userTime;
+    if (GetSystemTimes(&idleTime, &kernelTime, &userTime)) {
+        ULARGE_INTEGER totalTime, idleTotalTime;
+        totalTime.LowPart = userTime.dwLowDateTime;
+        totalTime.HighPart = userTime.dwHighDateTime;
+        totalTime.LowPart += kernelTime.dwLowDateTime;
+        totalTime.HighPart += kernelTime.dwHighDateTime;
 
-    int idle_time = idle + iowait;
-    int non_idle_time = user + nice + system + irq + softirq + steal;
+        idleTotalTime.LowPart = idleTime.dwLowDateTime;
+        idleTotalTime.HighPart = idleTime.dwHighDateTime;
 
-    int total_time = idle_time + non_idle_time;
-    double cpu_utilization = (non_idle_time * 100.0) / total_time;
+        double idleTimeInSeconds = idleTotalTime.QuadPart / 10e6;
+        double totalTimeInSeconds = totalTime.QuadPart / 10e6;
 
-    return cpu_utilization;
+        return 100.0 * (1.0 - (idleTimeInSeconds / totalTimeInSeconds));
+    }
+    return -1.0; // Error
 }
 
 int main() {
-    double utilization = get_cpu_utilization();
-    std::cout << "CPU Utilization: " << utilization << "%" << std::endl;
-    return 0;
+    double cpuUtilization = GetCpuUtilization();
+    if (cpuUtilization >= 0) {
+        std::cout << "CPU Utilization: " << cpuUtilization << "%" << std::endl;
+        return static_cast<int>(cpuUtilization); // Return CPU utilization as integer
+    } else {
+        std::cerr << "Error getting CPU utilization." << std::endl;
+        return -1;
+    }
 }

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Quicksand', sans-serif;
+            margin: 10px 0;
+            font-size: 4rem;
+        }
+
+        p {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.3rem;
+        }
+
+        #board {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            background-color: #61dafb;
+            cursor: pointer;
+        }
+
+        .cell:hover {
+            background-color: #4fa3d1;
+        }
+
+        #winner {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #4caf50;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Error 404 - Page Not Found</h1>
+    <p>Sorry, the page you are looking for might be in another universe till that time you can play a game here.</p>
+
+    <div id="board"></div>
+    <div id="winner"></div>
+    <br/>
+    <br/>
+    <button><a href="./index.html">Go Back</a></button>
+    <script>
+        const board = document.getElementById('board');
+        const cells = [];
+        const winnerDisplay = document.getElementById('winner');
+
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.setAttribute('data-index', i);
+            cells.push(cell);
+            board.appendChild(cell);
+        }
+
+        let currentPlayer = 'X';
+
+        board.addEventListener('click', (event) => {
+            const clickedCell = event.target;
+            const index = clickedCell.dataset.index;
+
+            if (cells[index].textContent === '') {
+                cells[index].textContent = currentPlayer;
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+
+            if (checkWinner()) {
+                winnerDisplay.textContent = `Player ${currentPlayer === 'X' ? 'O' : 'X'} wins!`;
+                resetBoard();
+            } else if (isBoardFull()) {
+                winnerDisplay.textContent = "It's a tie!";
+                resetBoard();
+            } else {
+                winnerDisplay.textContent = ''; // Clear the winner display if there's no winner
+            }
+        });
+
+        function checkWinner() {
+            const winningCombinations = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6]              // diagonals
+            ];
+
+            for (const combination of winningCombinations) {
+                const [a, b, c] = combination;
+                if (cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        function isBoardFull() {
+            return cells.every(cell => cell.textContent !== '');
+        }
+
+        function resetBoard() {
+            cells.forEach(cell => {
+                cell.textContent = '';
+            });
+
+            currentPlayer = 'X';
+        }
+    </script>
+</body>
+
+</html>
